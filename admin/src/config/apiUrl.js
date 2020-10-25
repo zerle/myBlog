@@ -1,7 +1,7 @@
 
 // 配置域名，部署服务器后配置对应的域名或者ip地址
-// const ipUrl = 'http://127.0.0.1:7001/admin/'
-const ipUrl = 'http://47.97.64.112:7001/admin/'
+const ipUrl = 'http://127.0.0.1:7001/admin/'
+// const ipUrl = 'http://47.97.64.112:7001/admin/'
 
 const servicePath = {
     checkLogin:ipUrl + 'checkLogin',  //  检查用户名密码是否正确

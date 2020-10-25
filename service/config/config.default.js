@@ -22,8 +22,8 @@ module.exports = appInfo => {
       host: 'localhost',
       port: '3306',
       user: 'root',
-      password: 'root',
-      // password: '12345678',
+      // password: 'root',
+      password: '12345678',
       database: 'blog',
     },
     app: true,
@@ -34,8 +34,8 @@ module.exports = appInfo => {
       enable: false,
       ignoreJSON: true,
     },
-    domainWhiteList: [ 'http://47.97.64.112:3000', 'http://47.97.64.112' ],
-    // domainWhiteList: [ 'http://localhost:3000' ],
+    // domainWhiteList: [ 'http://47.97.64.112:3000', 'http://47.97.64.112' ],
+    domainWhiteList: [ 'http://localhost:3000' ],
   };
   config.cors = {
     // origin: 'http://localhost:3000',
