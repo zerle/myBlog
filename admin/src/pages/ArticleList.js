@@ -7,6 +7,7 @@ const { confirm } = Modal;
 
 function ArticleList(props){
     const [list,setList]=useState([])
+    const [isOperated, setIsOperated] = useState(false)
     //得到文章列表
     const getList = ()=>{
         axios({
@@ -19,6 +20,12 @@ function ArticleList(props){
         }).catch(err => {
 
         })
+    }
+
+    const showOperation = () => {
+        const loginMsg = JSON.parse(localStorage.getItem('loginMsg') || '{}')
+        const userName = loginMsg.userName
+        return userName === 'zhanglei' ? true : false
     }
         
     //删除文章的方法
@@ -44,6 +51,7 @@ function ArticleList(props){
         props.history.push('/index/add/'+id)
     }
     useEffect(()=>{
+        setIsOperated(showOperation())
         getList()
     },[]) 
     return (
@@ -51,7 +59,7 @@ function ArticleList(props){
             <List
                 header={
                     <Row className="list-div">
-                        <Col span={8}>
+                        <Col span={11}>
                             <b>标题</b>
                         </Col>
                         <Col span={3}>
@@ -64,9 +72,11 @@ function ArticleList(props){
                             <b>浏览量</b>
                         </Col>
 
-                        <Col span={4}>
+                        {
+                            isOperated ?<Col span={4} >
                             <b>操作</b>
-                        </Col>
+                        </Col> : null
+                        }
                     </Row>
                 }
                 bordered
@@ -74,7 +84,7 @@ function ArticleList(props){
                 renderItem={item => (
                     <List.Item>
                         <Row className="list-div">
-                            <Col span={8}>
+                            <Col span={11}>
                                 {item.title}
                             </Col>
                             <Col span={3}>
@@ -87,10 +97,12 @@ function ArticleList(props){
                               {item.view_count}
                             </Col>
 
-                            <Col span={4}>
-                              <Button type="primary" onClick={()=>{updateArticle(item.id)}}>修改</Button>&nbsp;
-                              <Button onClick={()=>{delArticle(item.id)}} >删除</Button>
-                            </Col>
+                            {
+                                isOperated ?<Col span={4}>
+                                <Button type="primary" onClick={()=>{updateArticle(item.id)}}>修改</Button>&nbsp;
+                                <Button onClick={()=>{delArticle(item.id)}} >删除</Button>
+                              </Col> : null
+                            }
                         </Row>
                     </List.Item>
                 )}

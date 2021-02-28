@@ -19,6 +19,7 @@ function AddArticle(props){
     const [updateDate,setUpdateDate] = useState() //修改日志的日期
     const [typeInfo ,setTypeInfo] = useState([]) // 文章类别信息
     const [selectedType,setSelectType] = useState(1) //选择的文章类别
+    const [isSaveActicle, setSaveActicle] = useState(false)
     marked.setOptions({
         renderer: marked.Renderer(),
         gfm: true,
@@ -29,6 +30,11 @@ function AddArticle(props){
         smartLists: true,
         smartypants: false,
     });
+    const showSaveActicle = () => {
+        const loginMsg = JSON.parse(localStorage.getItem('loginMsg') || '{}')
+        const userName = loginMsg.userName
+        return userName === 'zhanglei' ? true : false
+    }
     const changeContent = (e)=>{
         setArticleContent(e.target.value)
         let html=marked(e.target.value)
@@ -134,12 +140,13 @@ function AddArticle(props){
 
     useEffect(()=>{
         getTypeInfo()
+        setSaveActicle(showSaveActicle())
         //获得文章ID
         const tmpId = props.match.params.id
         if(tmpId){
             setArticleId(tmpId)
             getArticleById(tmpId)
-        } 
+        }
     },[])
 
     return (
@@ -189,8 +196,8 @@ function AddArticle(props){
                 <Col span={6}>
                     <Row>
                         <Col span={24}>
-                            <Button  size="large">暂存文章</Button>&nbsp;
-                            <Button type="primary" size="large" onClick={saveArticle}>发布文章</Button>
+                            <Button  size="large" disabled>暂存文章</Button>&nbsp;
+                            { isSaveActicle ? <Button type="primary" size="large" onClick={saveArticle}>发布文章</Button> : null }
                             <br/><br/>
                             <TextArea 
                                 rows={4}

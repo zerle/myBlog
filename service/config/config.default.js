@@ -23,7 +23,7 @@ module.exports = appInfo => {
       port: '3306',
       user: 'root',
       // password: 'root',
-      password: '12345678',
+      password: 'Z@l312918',
       database: 'blog',
     },
     app: true,
@@ -34,8 +34,8 @@ module.exports = appInfo => {
       enable: false,
       ignoreJSON: true,
     },
-    // domainWhiteList: [ 'http://47.97.64.112:3000', 'http://47.97.64.112' ],
-    domainWhiteList: [ 'http://localhost:3000' ],
+    domainWhiteList: [ 'http://8.136.135.208:3000', 'http://www.jslei.cn:8080', 'http://jslei.cn:8080', 'https://www.jslei.cn', 'https://jslei.cn']
+    // domainWhiteList: [ 'http://localhost:3000', 'http://127.0.0.1:3000' ],
   };
   config.cors = {
     // origin: 'http://localhost:3000',

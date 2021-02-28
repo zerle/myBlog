@@ -32,7 +32,11 @@ function Login(props){
            res=>{
                 setIsLoading(false)
                 if(res.data.data=='登录成功'){
-                    localStorage.setItem('openId',res.data.openId)
+                    const loginMsg = {
+                        opendId: res.data.openId,
+                        userName: res.data.results[0].userName
+                    }
+                    localStorage.setItem('loginMsg', JSON.stringify(loginMsg))
                     props.history.push('/index')
                 }else{
                     message.error('用户名密码错误')

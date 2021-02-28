@@ -43,7 +43,7 @@ const Detailed = (props) => {
     return(
         <>
             <Head>
-            <title>Detailed</title>
+            <title>张垒的博客 | 详情页</title>
             </Head>
             <Header />
             <Row className="comm-main" type="flex" justify="center">

@@ -19,7 +19,7 @@ class MainController extends Controller {
       // 登录成功,进行session缓存
       const openId = new Date().getTime();
       this.ctx.session.openId = { openId };
-      this.ctx.body = { data: '登录成功', openId };
+      this.ctx.body = { data: '登录成功', openId, results: res };
     } else {
       this.ctx.body = { data: '登录失败' };
     }
